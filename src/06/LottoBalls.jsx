@@ -6,10 +6,9 @@ export default function LottoBalls() {
 
     };
 
-
     return (
         <div>
-            
+            <span className='bg-yellow-300 text-center'>1</span>
             <TailButton color = {"blue"} caption = {"로또번호생성"} onHandle={mixBalls}/>
         </div>
     )
