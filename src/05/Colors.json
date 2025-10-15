@@ -1,0 +1,11 @@
+[
+  { "color" : "blue",
+    "caption" : "파란색"
+  },
+  { "color" : "orange",
+    "caption" : "주황색"
+  },
+  { "color" : "lime",
+    "caption" : "라임색"
+  }
+]
