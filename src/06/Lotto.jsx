@@ -10,13 +10,12 @@ export default function Lotto() {
 
   const generateBalls = () => {
     let temp = [];
-    let cur = 0;
 
     // 랜덤 번호 생성
     while (temp.length != 7) {
       let n = Math.floor(Math.random() * 45)+1;
       if (temp.indexOf(n) == -1) {
-        temp[cur++] = n;
+        temp.push(n);
       }
     }
 
