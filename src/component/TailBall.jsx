@@ -1,15 +1,22 @@
 import React from 'react'
-import TailButton from './TailButton'
 
-export default function TailBall() {
-    const mixBalls = () => {
+const BALLCOLOR = [
+    "bg-red-500",
+    "bg-orange-500",
+    "bg-yellow-500",
+    "bg-green-500",
+    "bg-blue-500"
+];
 
-    };
+export default function TailBall({number}) {
 
     return (
-        <div>
-            <span className='bg-yellow-300 text-center'>1</span>
-            <TailButton color = {"blue"} caption = {"로또번호생성"} onHandle={mixBalls}/>
+        <div className={`w-18 h-18 rounded-full
+                        text-xl font-bold
+                        text-white ${BALLCOLOR[Math.floor(number/10)]}
+                        m-2
+                        flex justify-center items-center`}>
+            {number}
         </div>
     )
 }
