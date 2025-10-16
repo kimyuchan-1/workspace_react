@@ -7,7 +7,7 @@ import {useState} from 'react'
 const [selectFoodData, setSelectFoodData] = useState();
 
 const HandleInven = () => {
-    
+
 };
 
 const foodTags = selectFoodData.map(item => 
@@ -31,7 +31,7 @@ const btTags = fooddata.map(item =>
 export default function FoodMain() {
     return (
         <div className='w-full h-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 '>
-            <div >
+            <div className='flex justify-center items-center p-3 bg-gray-200'>
                 {btTags}
             </div>
             {foodTags}
