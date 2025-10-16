@@ -1,7 +1,7 @@
 import React from 'react'
 import TailButton from '../component/TailButton'
 
-export default function LottoBalls() {
+export default function LottoBall() {
     const mixBalls = () => {
 
     };
