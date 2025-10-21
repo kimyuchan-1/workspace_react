@@ -20,7 +20,8 @@ export default function TailButton({color, caption, onHandle}) {
         <div>
             <button className={`${btst.base} text-white 
                                 rounded-md ${btst.hover} hover:font-bold
-                                px-4 py-2`} 
+                                px-4 py-2 m-2
+                                cursor-pointer select-none`} 
                     onClick={onHandle}>
                 {caption}
             </button>

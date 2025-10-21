@@ -21,7 +21,7 @@ export default function FoodCard({name, operator, address, img, phone, fax}) {
     const txtC = isActive ? textColor.on : textColor.off;
 
     return (
-        <div className='w-19/20 h-19/20 m-2
+        <div className='w-19/20 h-19/20 max-w-144 max-h-63 m-2
                         flex flex-col flex-wrap
                         justify-between
                         border-solid border-gray-200 border-2
@@ -46,7 +46,7 @@ export default function FoodCard({name, operator, address, img, phone, fax}) {
             </div>
             <div className={`w-full p-2
                             flex flex-row justify-end items-center
-                            ${txtC} bg-gray-700 select-none`}
+                            ${txtC} bg-gray-700 select-none rounded-sm`}
                  onClick={HandleClick}>
                 <FaPhoneAlt /> &nbsp;{phone}&nbsp;&nbsp;<MdOutlineFax />&nbsp;{fax}
             </div>
