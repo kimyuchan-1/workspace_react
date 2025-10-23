@@ -5,6 +5,7 @@ import FoodMain from './07/FoodMain'
 import MyClock from './02/MyClock'
 import BoxOffice from './09/BoxOffice'
 import Traffic from './10/Traffic'
+import MyRef from './11/MyRef'
 
 
 function App() { // 함수명은 파일명과 동일해야 하며, 대문자로 시작해야 함, 소문자는 html 태그로 인식함
@@ -13,7 +14,7 @@ function App() { // 함수명은 파일명과 동일해야 하며, 대문자로 
     <div className='w-full h-screen flex flex-col overflow-hidden'>
       <Header />
       <main className='container mx-auto flex flex-col flex-grow overflow-y-auto'>
-        <Traffic />
+        <MyRef />
       </main>
       <Footer />
     </div>
