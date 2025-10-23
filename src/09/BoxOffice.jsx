@@ -14,7 +14,7 @@ export default function BoxOffice() {
         let value = event.target.value.replaceAll("-", "");
         setSelectDate(value);
     };
-
+/*
     const getFetchData = () => {
         const apiKey = import.meta.env.VITE_APP_MV_KEY;
         const baseUrl = "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?";
@@ -31,12 +31,33 @@ export default function BoxOffice() {
             .catch(err => console.log(err))
 
     };
+*/
+
+    const getFetchData = async () => {
+        const apiKey = import.meta.env.VITE_APP_MV_KEY;
+        const baseUrl = "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?";
+        let url = `${baseUrl}key=${apiKey}&targetDt=${selectDate}`
+
+        console.log(url);
+        
+        try {
+        const resp = await fetch(url);
+        const data = await resp.json();
+        const boxes = data.boxOfficeResult.dailyBoxOfficeList;
+        setBoxesData(boxes);
+        } catch (error) {
+            console.log("에러 발생",error);
+        }
+
+    };
+
 
     const clickMovie = (movie) => {
         if (!movie) {
             setInfo(" ");
             return;
         }
+
 
         const {movieNm: title, openDt, scrnCnt, showCnt}=movie;
 
