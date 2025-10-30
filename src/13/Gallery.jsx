@@ -5,6 +5,7 @@ import {useRef, useEffect, useState} from 'react'
 export default function Gallery() {
     const txt1Ref = useRef();
     const [gData, setGData] = useState([]);
+    const [cardTags, setCardTags] = useState([]);
 
     const getFetchData = async (search) => {
         const apiKey = import.meta.env.VITE_APP_API_KEY;
@@ -15,6 +16,7 @@ export default function Gallery() {
         try {
         const resp = await fetch(url);
         const data = await resp.json();
+        console.log(data);
         const galleryData = await data.body.items.item;
         console.log(galleryData);
         setGData(galleryData);
@@ -43,7 +45,14 @@ export default function Gallery() {
         txt1Ref.current.focus();
     },[]);
 
-
+    useEffect(()=>{
+        const tempTags = gData.map(item => <TailCard title = {item.galTitle} 
+                                                     url = {item.galWebImageUrl} 
+                                                     location = {item.galPhotographyLocation} 
+                                                     keyword = {item.galSearchKeyword}
+                                                     key = {item.galContentId}/>);
+        setCardTags(tempTags);
+    },[gData]);
 
     return (
         <div className='w-full h-full flex justify-center items-start p-3'>
@@ -61,7 +70,7 @@ export default function Gallery() {
                 </form>
             </div>
             <div>
-                <TailCard />
+                {cardTags}
             </div>
         </div>
     )
