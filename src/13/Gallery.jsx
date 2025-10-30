@@ -3,21 +3,22 @@ import TailButton from '../component/TailButton'
 import {useRef, useEffect, useState} from 'react'
 
 export default function Gallery() {
-    const txt1Ref = useRef();
+    
     const [gData, setGData] = useState([]);
     const [cardTags, setCardTags] = useState([]);
 
+    const txt1Ref = useRef();
+
     const getFetchData = async (search) => {
-        const apiKey = import.meta.env.VITE_APP_API_KEY;
-        const baseUrl = "https://apis.data.go.kr/B551011/PhotoGalleryService1/gallerySearchList1?serviceKey=";
-        let url = `${baseUrl}${apiKey}&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&keyword=${search}&_type=json`;
-        console.log(url);
+        const apiKey = import.meta.env.VITE_APP_API_KEY; 
+        const baseUrl = '/photo-api/gallerySearchList1?';
+        let url = `${baseUrl}serviceKey=${apiKey}&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&keyword=${search}&_type=json`;
 
         try {
         const resp = await fetch(url);
         const data = await resp.json();
         console.log(data);
-        const galleryData = await data.body.items.item;
+        const galleryData = await data.response.body.items.item;
         console.log(galleryData);
         setGData(galleryData);
         } catch (error) {
@@ -39,10 +40,11 @@ export default function Gallery() {
         e.preventDefault();
 
         txt1Ref.current.value = "";
+        setCardTags([]);
     };
 
     useEffect(()=>{
-        txt1Ref.current.focus();
+        // txt1Ref.current.focus();
     },[]);
 
     useEffect(()=>{
@@ -50,15 +52,16 @@ export default function Gallery() {
                                                      url = {item.galWebImageUrl} 
                                                      location = {item.galPhotographyLocation} 
                                                      keyword = {item.galSearchKeyword}
+                                                     keyVal = {item.galContentId}
                                                      key = {item.galContentId}/>);
         setCardTags(tempTags);
     },[gData]);
 
     return (
-        <div className='w-full h-full flex justify-center items-start p-3'>
+        <div className='w-full h-full flex flex-col justify-start items-center p-3'>
             <div className='w-9/10 h-40 shadow-lg outline outline-black/5
                             flex flex-col justify-center items-center
-                            rounded-sm'>
+                            rounded-sm p-2 m-3'>
                 <h1 className='text-4xl font-bold'>한국관광공사_관광사진 정보</h1>
                 <form className='flex flex-row justify-center items-center m-3'>
                     <input type='text' className='w-50 h-10 mr-2 p-2
@@ -69,7 +72,7 @@ export default function Gallery() {
                     <TailButton color ="blue" caption="취소" onHandle={handleClick2}/>
                 </form>
             </div>
-            <div>
+            <div className='grid grid-cols-1 lg:grid-cols-3 sm:grid-cols-2 gap-3 pb-3'>
                 {cardTags}
             </div>
         </div>

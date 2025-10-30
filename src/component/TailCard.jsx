@@ -1,9 +1,12 @@
-export default function TailCard({title, url, location, keyword}) {
-    console.log(keyword);
-    const keywordTags = keyword.map(item => {
+export default function TailCard({title, url, location, keyword, keyVal}) {
+    let keywordTags = keyword.split(", ").map((item, idx) => {
+        if (item == "") {
+            return ;
+        }
+
         return <span className="inline-block rounded-full bg-gray-200 
                                 text-gray-700 text-sm font-semibold
-                                mr-2 mb-2 px-3 py-1">{item}</span>
+                                mr-2 mb-2 px-3 py-1" key = {keyVal+idx}>{item}</span>
     });
     
     return (
@@ -12,7 +15,7 @@ export default function TailCard({title, url, location, keyword}) {
             <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2">{title}</div>
                 <div className="text-gray-700 text-base">{location}</div>
-                <div className="px-6 pt-4 pb-2">
+                <div className="pt-4 pb-2">
                     {keywordTags}
                 </div>
             </div>

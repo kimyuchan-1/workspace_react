@@ -6,4 +6,21 @@ import tailwind from '@tailwindcss/vite';
 export default defineConfig({
   plugins: [react(), tailwind(),
   ],
-})
+  server: {
+    proxy: {
+      '/photo-api': {
+        target: 'https://apis.data.go.kr',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/photo-api/, '/B551011/PhotoGalleryService1'),
+        secure: false,
+      },
+      '/festival-api': {
+        target: 'https://apis.data.go.kr',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/festival-api/, '/6260000/FestivalService'),
+        secure: false,
+      }
+    }
+  }
+},
+)
