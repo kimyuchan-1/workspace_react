@@ -1,10 +1,10 @@
 import TrafficNav from "./TrafficNav"
 import TrafficInfo from "./TrafficInfo";
-import trafficData from "./교통사고통계.json"
+//import trafficData from "./교통사고통계.json"
 import { useState, useEffect } from 'react'
 
 export default function Traffic() {
-  const [tData, setTData] = useState();
+  const [tData, setTData] = useState([]);
   const [c1, setC1] = useState();
   const [selectC1, setSelectC1] = useState();
   const [c2, setC2] = useState();
@@ -12,8 +12,20 @@ export default function Traffic() {
   const [infoTags, setInfoTags] = useState();
   const [sumInfo, setSumInfo] = useState([0,0,0,0,0]);
 
-  const getFetchData = () => {
-    setTData(trafficData);
+  const getFetchData = async () => {
+    const apiKey = import.meta.env.VITE_APP_API_KEY;
+    const baseUrl = "https://api.odcloud.kr/api/15070288/v1/uddi:c5c1cd3f-650e-45eb-8697-cf6b79661dab?page=1&perPage=117&";
+    let url = `${baseUrl}serviceKey=${apiKey}`
+
+    try {
+        const resp = await fetch(url);
+        const data = await resp.json();
+        const trafficData = data.data;
+        //console.log(trafficData);
+        setTData(trafficData);
+        } catch (error) {
+            console.log("에러 발생",error);
+        }
   };
 
   useEffect(() => {
@@ -22,10 +34,10 @@ export default function Traffic() {
 
   useEffect(() => {
     const category = [
-      ...new Set(trafficData.map(item => item['사고유형대분류']))
+      ...new Set(tData.map(item => item['사고유형대분류']))
     ];
     setC1(category);
-    console.log(c1);
+    //console.log(c1);
   }, [tData]);
 
   useEffect(() => {
@@ -33,14 +45,14 @@ export default function Traffic() {
 
     if (selectC1 != null) {
       const temp = tData.filter(item => item["사고유형대분류"] == selectC1);
-      console.log(temp);
+      //console.log(temp);
       const category = [
         ...new Set(temp.map(item => item['사고유형']))
       ];
       setC2(category);
       setInfoTags([]);
       setSumInfo([0,0,0,0,0]);
-      console.log(c2);
+      //console.log(c2);
     }
 
   }, [selectC1]);
@@ -50,7 +62,7 @@ export default function Traffic() {
 
     if (selectC2 != null) {
       const temp = tData.filter(item => item["사고유형대분류"] == selectC1 && item["사고유형"] == selectC2);
-      console.log(temp);
+      //console.log(temp);
 
       let tempList = [0,0,0,0,0];
 
