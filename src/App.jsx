@@ -14,7 +14,7 @@ function App() { // 함수명은 파일명과 동일해야 하며, 대문자로 
     <div className='w-full h-screen flex flex-col overflow-hidden'>
       <Header />
       <main className='container mx-auto flex flex-col flex-grow overflow-y-auto'>
-        <MyRef />
+        <Traffic />
       </main>
       <Footer />
     </div>
