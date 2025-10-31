@@ -4,9 +4,12 @@ export default function TailCard({title, url, location, keyword, keyVal}) {
             return ;
         }
 
-        return <span className="inline-block rounded-full bg-gray-200 
+        return (<a href={`https://www.google.com/search?q=${item}` } key = {keyVal+idx} target='_blank'>
+                    <span className="inline-block rounded-full bg-gray-200 
                                 text-gray-700 text-sm font-semibold
-                                mr-2 mb-2 px-3 py-1" key = {keyVal+idx}>{item}</span>
+                                mr-2 mb-2 px-3 py-1" key = {keyVal+idx}>{item}
+                    </span>
+                </a>);
     });
     
     return (

@@ -14,6 +14,8 @@ import MyRef from './11/MyRef'
 import Ref from './12/Ref'
 import Gallery from './13/Gallery'
 import Festival from './14/Festival'
+import RouteMain from './15/RouteMain'
+
 
 
 function App() { // 함수명은 파일명과 동일해야 하며, 대문자로 시작해야 함, 소문자는 html 태그로 인식함
@@ -21,8 +23,8 @@ function App() { // 함수명은 파일명과 동일해야 하며, 대문자로 
   return (
     <div className='w-full h-screen flex flex-col overflow-hidden'>
       <Header />
-      <main className='container mx-auto flex flex-col flex-grow overflow-y-auto'>
-        <Festival />
+      <main className='container mx-auto flex flex-col flex-grow overflow-y-auto bg-zinc-50'>
+        <RouteMain />
       </main>
       <Footer />
     </div>
