@@ -1,11 +1,14 @@
-import {useState, useEffect, useRef, use} from 'react'
+import {useState, useEffect} from 'react'
 import TailCard from '../component/TailCard'
+import { Link,useParams } from 'react-router-dom'
+
 
 export default function Festival() {
     const [fData, setFData] = useState([]);
     const [selectedDistrict, setSelectedDistrict] = useState([]);
     const [cardTags, setCardTags] = useState([]);
     const [optionTags, setOptionTags] = useState([]);
+    const {district} = useParams();
 
     const getFetchData = async () => {
         const apiKey = import.meta.env.VITE_APP_API_KEY; 
@@ -47,16 +50,18 @@ export default function Festival() {
     };
 
     useEffect(()=>{
-        const tempTags = selectedDistrict.map((item) => 
-        <TailCard title={item.TITLE} url={item.MAIN_IMG_THUMB} 
-                  location={item.ITEMCNTNTS.split(/[.!?]+/g)[0]+"."+item.ITEMCNTNTS.split(/[.!?]+/g)[1]+"."} keyword={item.PLACE} 
-                  keyVal={item.UC_SEQ} key={item.UC_SEQ}/>);
+        const tempTags = selectedDistrict.map((item, idx) => 
+        <Link to="/festival/content" key = {item.UC_SEQ+idx} state = {{content:item}}>
+            <TailCard title={item.TITLE} url={item.MAIN_IMG_THUMB} 
+                      location={item.ITEMCNTNTS.split(/[.!?]+/g)[0]+"."+item.ITEMCNTNTS.split(/[.!?]+/g)[1]+"."} keyword={item.PLACE} 
+                      keyVal={item.UC_SEQ} key={item.UC_SEQ}/> </Link>);
 
         setCardTags(tempTags);
     },[selectedDistrict]);
 
     useEffect(()=>{
         getFetchData();
+        
     },[]);
 
     return (

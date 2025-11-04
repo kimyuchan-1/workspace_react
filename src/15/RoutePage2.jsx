@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom"
 
 export default function RoutePage2() {
-  const [sParams] = useSearchParams();
+  const [sParams, setSParams] = useSearchParams();
   const queryList = [...sParams];
   console.log(queryList);
 
