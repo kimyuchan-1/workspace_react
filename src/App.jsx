@@ -2,32 +2,41 @@ import './App.css'
 import Header from './component/Header'
 import Footer from './component/Footer'
 import MyClock from './02/MyClock'
-import MyDiv1 from './03_1/MyDiv1'
-import MyList from './04/MyList'
-import MyToggle from './05/MyToggle'
 import Lotto from './06/Lotto'
 import FoodMain from './07/FoodMain'
-import MyEffect from './08/MyEffect'
 import BoxOffice from './09/BoxOffice'
 import Traffic from './10/Traffic'
-import MyRef from './11/MyRef'
-import Ref from './12/Ref'
 import Gallery from './13/Gallery'
 import Festival from './14/Festival'
-import RouteMain from './15/RouteMain'
+import FestivalContent from './14/FestivalContent'
+import ChargeInfo from './16/ChargeInfo'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 
 
 function App() { // 함수명은 파일명과 동일해야 하며, 대문자로 시작해야 함, 소문자는 html 태그로 인식함
   // jsx 컴포넌트의 함수는 반드시 return을 해야 함
   return (
-    <div className='w-full h-screen flex flex-col overflow-hidden'>
-      <Header />
-      <main className='container mx-auto flex flex-col flex-grow overflow-y-auto bg-zinc-50'>
-        <RouteMain />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <div className='w-full h-screen flex flex-col overflow-hidden'>
+        <Header/>
+        <main className='container mx-auto flex flex-col flex-grow overflow-y-auto'>
+          <Routes>
+            <Route path='/' element={<MyClock />} />
+            <Route path='/lotto' element={<Lotto />} />
+            <Route path='/food' element={<FoodMain />} />
+            <Route path='/box' element={<BoxOffice />} />
+            <Route path='/traffic' element={<Traffic />} />
+            <Route path='/gallery' element={<Gallery />} />
+            <Route path='/festival' element={<Festival />}/>
+            <Route path='/festival/:district' element={<Festival />} />
+            <Route path='/festival/content' element={<FestivalContent />} />
+            <Route path='/charge' element={<ChargeInfo />}/>
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </BrowserRouter>
   )
 }
 
