@@ -44,7 +44,7 @@ export default function Gallery() {
     };
 
     useEffect(()=>{
-        // txt1Ref.current.focus();
+        txt1Ref.current.focus();
     },[]);
 
     useEffect(()=>{

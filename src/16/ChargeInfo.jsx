@@ -1,52 +1,200 @@
-import TailSelect from "../component/TailSelect"
 import zcode from "./data/zcode.json"
 import zscode from "./data/zscode.json"
 import kind from "./data/kind.json"
 import kinddetail from "./data/kinddetail.json"
+
+import TailSelect from "../component/TailSelect"
 import TailButton from "../component/TailButton"
-import { useState } from "react"
+import ChargerCard from "./ChargerCard"
 
-export default function ChargeInfo() {
-    const [zcodeOptions, setZcodeOptions] = useState([]);
-    const [zscodeOptions,setZscodeOptions] = useState([]);
-    const [kindOptions,setKindOptions] = useState([]);
-    const [kinddetailOptions,setKinddetailOptions] = useState([]);
+import { useEffect, useRef, useState } from "react"
+import ChargerPlace from "./ChargerPlace"
 
-    const tempZ = Object.values(zcode);
-    setZcodeOptions(tempZ);
+export default function ChargerInfo() {
+    //상태변수
+    const [tdata, setTdata] = useState([]);
+    const [zsc, setZsc] = useState(null);
+    const [kindDetail, setKindDetail] = useState(null);
+    const [isLoding, setIsLoding] = useState(false);
+    const [cardTags, setCardTags] = useState([]);
+    const [placeTags, setPlaceTags] = useState([]);
 
-    const tempKind = Object.values(kind);
-    setKindOptions(tempKind);
+    //select 박스 
+    const sel1Ref = useRef();
+    const sel2Ref = useRef();
+    const sel3Ref = useRef();
+    const sel4Ref = useRef();
 
-    const selectZscode = (e) => {
-        e.preventDefault();
-        const tempZs = Object.values(zscode.filter(item => Object.values(item) == e.target.value));
-        setZscodeOptions(tempZs);
-    };
+    //데이터가져오기
+    const getFetchData = async () => {
+        const apikey = import.meta.env.VITE_APP_API_KEY;
+        const baseUrl = `http://apis.data.go.kr/B552584/EvCharger/getChargerInfo?`;
+        let url = `${baseUrl}serviceKey=${apikey}`;
+        url = `${url}&numOfRows=100&pageNo=1`;
+        url = `${url}&zcode=${sel1Ref.current.value}&zscode=${sel2Ref.current.value}`;
+        url = `${url}&kind=${sel3Ref.current.value}&kindDetail=${sel4Ref.current.value}`;
+        url = `${url}&dataType=JSON`;
 
-    const selectKind = (e) => {
-        e.preventDefault();
-        const tempKindDetail = Object.values(kinddetail.filter(item => Object.values(item) == e.target.value));
-        setKinddetailOptions(tempKindDetail);
-    };
+        setIsLoding(true);
+        const resp = await fetch(url);
+        const data = await resp.json();
+
+        setTdata(data.items.item);
+        setIsLoding(false);
+        console.log(url);
+    }
+
+    //시도 선택
+    const handleZcode = () => {
+        setZsc(null);
+        setTdata([]);
+        setIsLoding(false);
+
+        if (sel1Ref.current.value == "")
+            setZsc(null);
+        else
+            setZsc(zscode[sel1Ref.current.value]);
+    }
+
+    //충전소 구분
+    const handleKind = () => {
+        setKindDetail(null);
+        setTdata([]);
+        setIsLoding(false);
+
+        console.log(sel3Ref.current.value, kinddetail[sel3Ref.current.value])
+        if (sel3Ref.current.value == "")
+            setKindDetail(null);
+        else
+            setKindDetail(kinddetail[sel3Ref.current.value]);
+    }
+
+    //취소 
+    const handleCancel = () => {
+        sel1Ref.current.value = "";
+        sel2Ref.current.value = "";
+        sel3Ref.current.value = "";
+        sel4Ref.current.value = "";
+
+        setZsc(null);
+        setKindDetail(null);
+        setTdata([]);
+        setIsLoding(false);
+    }
+
+    //검색
+    const handleSearch = () => {
+        if (sel1Ref.current.value == "") {
+            alert("시도를 선택하세요.");
+            sel1Ref.current.focus();
+            return;
+        }
+        if (sel2Ref.current.value == "") {
+            alert("지역동을 선택하세요.");
+            sel2Ref.current.focus();
+            return;
+        }
+        if (sel3Ref.current.value == "") {
+            alert("충전소 구분을 선택하세요.");
+            sel3Ref.current.focus();
+            return;
+        }
+        if (sel4Ref.current.value == "") {
+            alert("충전소 상세를 선택하세요.");
+            sel4Ref.current.focus();
+            return;
+        }
+
+        getFetchData();
+    }
 
 
-    
+    // fetch가 완료되면
+    useEffect(() => {
+        if (tdata.length == 0) return;
+        console.log(tdata);
 
+        const tempTags = [<ChargerCard color="blue" title="통신이상" key="1" num={tdata.filter(item => item.stat == 1).length} />,
+        <ChargerCard color="blue" title="충전대기" key="2" num={tdata.filter(item => item.stat == 2).length} />,
+        <ChargerCard color="blue" title="충전중" key="3" num={tdata.filter(item => item.stat == 3).length} />,
+        <ChargerCard color="blue" title="운영중지" key="4" num={tdata.filter(item => item.stat == 4).length} />,
+        <ChargerCard color="blue" title="점검중" key="5" num={tdata.filter(item => item.stat == 5).length} />,
+        <ChargerCard color="blue" title="상태미확인" key="9" num={tdata.filter(item => item.stat == 9).length} />
+        ];
+        setCardTags(tempTags);
+
+        
+
+    }, [tdata]);
+
+    useEffect(()=>{
+        const tempTags = tdata.map(item => {
+            <ChargerPlace value = {item.statNm} key = {item.statId} onHandle = {()=>{}}/>
+        });
+        setPlaceTags(tempTags)
+    },[cardTags])
 
     return (
         <div className="w-full flex flex-col justify-start items-center">
-            <h1 className="text-2xl font-bold p-5 mb-4 text-left">
+            <h1 className="w-full text-2xl font-bold p-5 mb-4 text-left">
                 전기차 충전소 정보
             </h1>
+
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
-                <TailSelect caption="시도" options={zcodeOptions} onChange={selectZscode}/>
-                <TailSelect caption="지역동" options={zscodeOptions} onChange={()=>{}}/>
-                <TailSelect caption="충전소구분" options={kindOptions} onChange={selectKind}/>
-                <TailSelect caption="충전소상세" options={kinddetailOptions} onChange={()=>{}}/>
-                <TailButton caption="검색" color ="blue" onHandle={()=>{}}/>
-                <TailButton caption="취소" color ="orange" onHandle={()=>{}}/>
+                <TailSelect id="sel1"
+                    ref={sel1Ref}
+                    title="시도"
+                    opk={Object.keys(zcode)}
+                    opv={Object.values(zcode)}
+                    onHandle={handleZcode}
+                />
+
+                <TailSelect id="sel2"
+                    ref={sel2Ref}
+                    title="지역동"
+                    opk={zsc ? Object.values(zsc) : ""}
+                    opv={zsc ? Object.keys(zsc) : ""}
+                    onHandle={() => { }}
+                />
+
+                <TailSelect id="sel3"
+                    ref={sel3Ref}
+                    title="충전소구분"
+                    opk={Object.keys(kind)}
+                    opv={Object.values(kind)}
+                    onHandle={handleKind}
+                />
+
+                <TailSelect id="sel4"
+                    ref={sel4Ref}
+                    title="충전소 상세"
+                    opk={kindDetail ? Object.values(kindDetail) : ""}
+                    opv={kindDetail ? Object.keys(kindDetail) : ""}
+                    onHandle={() => { }}
+                />
+
+                <TailButton caption="검색" color="blue" onHandle={handleSearch} />
+                <TailButton caption="취소" color="orange" onHandle={handleCancel} />
             </div>
+            {
+                (tdata.length != 0) &&
+                <div className="w-full">
+                    <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 mt-5">
+                        <ChargerCard color="orange" title="충전소수" num={tdata.length} />
+                        {cardTags}
+                    </div>
+                    <div className="w-full grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-8 gap-4 mt-5">
+                        {placeTags}
+                    </div>
+                </div>
+            }
+            {
+                isLoding &&
+                <p className="w-full text-2xl text-blue-700 font-bold p-5 mb-4 text-center">
+                    로딩중...
+                </p>
+            }
         </div>
+
     )
 }
