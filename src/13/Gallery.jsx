@@ -17,9 +17,8 @@ export default function Gallery() {
         try {
         const resp = await fetch(url);
         const data = await resp.json();
-        console.log(data);
         const galleryData = await data.response.body.items.item;
-        console.log(galleryData);
+
         setGData(galleryData);
         } catch (error) {
             console.log("에러 발생",error);

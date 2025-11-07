@@ -28,7 +28,7 @@ export default function FoodMain() {
         
         if (caption != '전체') {
             let foodFilterData = fooddata.filter(item => caption == item['운영주체 분류'].replace(' ',''));
-            console.log(foodFilterData);
+            //console.log(foodFilterData);
             setSelectFoodData(foodFilterData);
         } else {
             setSelectFoodData(fooddata);

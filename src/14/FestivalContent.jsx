@@ -4,7 +4,6 @@ import TailButton from '../component/TailButton';
 export default function FestivalContent() {
     const location = useLocation();
     const content = location.state.content;
-    console.log(content);
 
     const navigate = useNavigate();
     const handleHome = () => {
@@ -38,7 +37,7 @@ export default function FestivalContent() {
                             </td>
                             <td className='text-black font-bold flex flex-row items-center p-2'>
                                 {content.ADDR1 == "" ? "주소 없음" : content.ADDR1}&nbsp;
-                                <TailButton color="orange" caption="카카오지도보기" onHandle={handleMap} />
+                                <TailButton color="yellow" caption="카카오지도보기" onHandle={handleMap} />
                             </td>
                         </tr>
                         <tr>

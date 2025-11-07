@@ -37,8 +37,6 @@ export default function BoxOffice() {
         const apiKey = import.meta.env.VITE_APP_MV_KEY;
         const baseUrl = "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?";
         let url = `${baseUrl}key=${apiKey}&targetDt=${selectDate}`
-
-        console.log(url);
         
         try {
         const resp = await fetch(url);

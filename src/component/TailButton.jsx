@@ -10,6 +10,10 @@ const BTStyle = {
         lime : {
             base : "bg-lime-600",
             hover : "hover:bg-lime-800"
+        },
+        yellow : {
+            base : "bg-yellow-300",
+            hover : "hover:bg-yellow-500"
         }
     };
 

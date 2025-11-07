@@ -10,6 +10,7 @@ import Gallery from './13/Gallery'
 import Festival from './14/Festival'
 import FestivalContent from './14/FestivalContent'
 import ChargeInfo from './16/ChargeInfo'
+import ChargerDetail from './16/ChargerDetail'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 
@@ -28,10 +29,10 @@ function App() { // 함수명은 파일명과 동일해야 하며, 대문자로 
             <Route path='/box' element={<BoxOffice />} />
             <Route path='/traffic' element={<Traffic />} />
             <Route path='/gallery' element={<Gallery />} />
-            <Route path='/festival' element={<Festival />}/>
-            <Route path='/festival/:district' element={<Festival />} />
+            <Route path='/festival' element={<Festival />} />
             <Route path='/festival/content' element={<FestivalContent />} />
-            <Route path='/charge' element={<ChargeInfo />}/>
+            <Route path='/charger' element={<ChargeInfo />}/>
+            <Route path='/charger/detail' element={<ChargerDetail />}/>
           </Routes>
         </main>
         <Footer />

@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import TailCard from '../component/TailCard'
-import { Link,useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 export default function Festival() {
@@ -8,7 +8,6 @@ export default function Festival() {
     const [selectedDistrict, setSelectedDistrict] = useState([]);
     const [cardTags, setCardTags] = useState([]);
     const [optionTags, setOptionTags] = useState([]);
-    const {district} = useParams();
 
     const getFetchData = async () => {
         const apiKey = import.meta.env.VITE_APP_API_KEY; 
@@ -16,11 +15,9 @@ export default function Festival() {
         let url = `${baseUrl}serviceKey=${apiKey}&pageNo=1&numOfRows=41&resultType=JSON`;
 
         try{
-            console.log(url);
             const resp = await fetch(url);
             const data = await resp.json();
             const festivalData = await data.getFestivalKr.item;
-            console.log(festivalData);
             setFData(festivalData);
 
             const temp =  [
@@ -44,7 +41,6 @@ export default function Festival() {
             setSelectedDistrict(fData);
         } else {
             const temp = fData.filter(item => item.GUGUN_NM === e.target.value);
-            console.log(temp);
             setSelectedDistrict(temp);
         }
     };

@@ -9,6 +9,7 @@ import ChargerCard from "./ChargerCard"
 
 import { useEffect, useRef, useState } from "react"
 import ChargerPlace from "./ChargerPlace"
+import { Link } from "react-router-dom"
 
 export default function ChargerInfo() {
     //상태변수
@@ -41,7 +42,7 @@ export default function ChargerInfo() {
 
         setTdata(data.items.item);
         setIsLoding(false);
-        console.log(url);
+
     }
 
     //시도 선택
@@ -62,7 +63,6 @@ export default function ChargerInfo() {
         setTdata([]);
         setIsLoding(false);
 
-        console.log(sel3Ref.current.value, kinddetail[sel3Ref.current.value])
         if (sel3Ref.current.value == "")
             setKindDetail(null);
         else
@@ -105,6 +105,9 @@ export default function ChargerInfo() {
             return;
         }
 
+        setCardTags([]);
+        setPlaceTags([]);
+
         getFetchData();
     }
 
@@ -112,9 +115,10 @@ export default function ChargerInfo() {
     // fetch가 완료되면
     useEffect(() => {
         if (tdata.length == 0) return;
-        console.log(tdata);
 
-        const tempTags = [<ChargerCard color="blue" title="통신이상" key="1" num={tdata.filter(item => item.stat == 1).length} />,
+        const tempTags = [
+        <ChargerCard color="orange" title="충전소수" num={tdata.length} />,
+        <ChargerCard color="blue" title="통신이상" key="1" num={tdata.filter(item => item.stat == 1).length} />,
         <ChargerCard color="blue" title="충전대기" key="2" num={tdata.filter(item => item.stat == 2).length} />,
         <ChargerCard color="blue" title="충전중" key="3" num={tdata.filter(item => item.stat == 3).length} />,
         <ChargerCard color="blue" title="운영중지" key="4" num={tdata.filter(item => item.stat == 4).length} />,
@@ -123,16 +127,20 @@ export default function ChargerInfo() {
         ];
         setCardTags(tempTags);
 
-        
+
 
     }, [tdata]);
 
-    useEffect(()=>{
-        const tempTags = tdata.map(item => {
-            <ChargerPlace value = {item.statNm} key = {item.statId} onHandle = {()=>{}}/>
+    useEffect(() => {
+        const tempTags = tdata.map((item,idx) => {
+            return (<Link to = "/charger/detail"
+                          key = {item.statId+idx}
+                          state ={{item:item}}>
+                        <ChargerPlace value={item.statNm} key={item.statId} />
+                    </Link>);
         });
         setPlaceTags(tempTags)
-    },[cardTags])
+    }, [cardTags])
 
     return (
         <div className="w-full flex flex-col justify-start items-center">
@@ -180,19 +188,18 @@ export default function ChargerInfo() {
                 (tdata.length != 0) &&
                 <div className="w-full">
                     <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 mt-5">
-                        <ChargerCard color="orange" title="충전소수" num={tdata.length} />
                         {cardTags}
                     </div>
-                    <div className="w-full grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-8 gap-4 mt-5">
+                    <div className="w-full grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-8 gap-4 m-5">
                         {placeTags}
                     </div>
                 </div>
             }
             {
                 isLoding &&
-                <p className="w-full text-2xl text-blue-700 font-bold p-5 mb-4 text-center">
-                    로딩중...
-                </p>
+                <div className="w-full p-5 mb-4 flex justify-center items-center">
+                    <img src="/img/loading.gif" alt="로딩중" />
+                </div>
             }
         </div>
 

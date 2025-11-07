@@ -41,7 +41,7 @@ export default function Traffic() {
   }, [tData]);
 
   useEffect(() => {
-    console.log("대분류", selectC1);
+    //console.log("대분류", selectC1);
 
     if (selectC1 != null) {
       const temp = tData.filter(item => item["사고유형대분류"] == selectC1);
@@ -58,7 +58,7 @@ export default function Traffic() {
   }, [selectC1]);
 
   useEffect(() => {
-    console.log("사고유형", selectC2);
+    //console.log("사고유형", selectC2);
 
     if (selectC2 != null) {
       const temp = tData.filter(item => item["사고유형대분류"] == selectC1 && item["사고유형"] == selectC2);
