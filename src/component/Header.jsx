@@ -16,6 +16,8 @@ export default function Header() {
                 <Link to="/gallery" className='hover:underline mx-1 select-none cursor-pointer'>Gallery</Link>
                 <Link to="/festival" className='hover:underline mx-1 select-none cursor-pointer'>Festival</Link>
                 <Link to="/charger" className='hover:underline mx-1 select-none cursor-pointer'>Charge</Link>
+                <Link to="/jotai" className='hover:underline mx-1 select-none cursor-pointer'>Jotai</Link>
+                <Link to="/festivalwithjotai" className='hover:underline mx-1 select-none cursor-pointer'>FestivalwithJotai</Link>
             </ul>
         </nav>
     </header>

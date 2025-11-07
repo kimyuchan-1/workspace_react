@@ -11,6 +11,9 @@ import Festival from './14/Festival'
 import FestivalContent from './14/FestivalContent'
 import ChargeInfo from './16/ChargeInfo'
 import ChargerDetail from './16/ChargerDetail'
+import JotaiCnt from './17/JotaiCnt'
+import FestivalWithJotai from './14_2/FestivalWithJotai'
+import FestivalContentWithJotai from './14_2/FestivalContentWithJotai'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 
@@ -33,6 +36,9 @@ function App() { // 함수명은 파일명과 동일해야 하며, 대문자로 
             <Route path='/festival/content' element={<FestivalContent />} />
             <Route path='/charger' element={<ChargeInfo />}/>
             <Route path='/charger/detail' element={<ChargerDetail />}/>
+            <Route path='/jotai' element={<JotaiCnt />} />
+            <Route path='/festivalwithjotai' element={<FestivalWithJotai />} />
+            <Route path='/festivalwithjotai/contents' element={<FestivalContentWithJotai />} />
           </Routes>
         </main>
         <Footer />
