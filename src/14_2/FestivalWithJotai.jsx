@@ -59,7 +59,7 @@ function FestivalContent() {
                     <select name="sel1"
                         ref={selRef}
                         value={gu ? gu : ""}
-                        className="w-1/3 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg
+                        className="w-2/5 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg
                                  focus:ring-blue-500 focus:border-blue-500 block p-2.5 "
                         onChange={handleChange}>
                         <option value="">--- 지역을 선택하세요 ---</option>
