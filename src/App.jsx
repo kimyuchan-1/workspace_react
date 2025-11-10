@@ -15,6 +15,7 @@ import JotaiCnt from './17/JotaiCnt'
 import FestivalWithJotai from './14_2/FestivalWithJotai'
 import FestivalContentWithJotai from './14_2/FestivalContentWithJotai'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import TodoList from './18/TodoList'
 
 
 
@@ -39,6 +40,7 @@ function App() { // 함수명은 파일명과 동일해야 하며, 대문자로 
             <Route path='/jotai' element={<JotaiCnt />} />
             <Route path='/festivalwithjotai' element={<FestivalWithJotai />} />
             <Route path='/festivalwithjotai/contents' element={<FestivalContentWithJotai />} />
+            <Route path='/todolist' element={<TodoList />}/>
           </Routes>
         </main>
         <Footer />

@@ -10,14 +10,15 @@ export default function Header() {
             <ul className='flex space-x-4'>
                 <Link to='/'className='hover:underline select-none mx-1 cursor-pointer'>Home</Link>
                 <Link to="/lotto" className='hover:underline mx-1 select-none cursor-pointer'>Lotto</Link>
-                <Link to="/food" className='hover:underline mx-1 select-none cursor-pointer'>Food</Link>
+                {/*<Link to="/food" className='hover:underline mx-1 select-none cursor-pointer'>Food</Link>*/}
                 <Link to="/box" className='hover:underline mx-1 select-none cursor-pointer'>Boxoffice</Link>
                 <Link to="/traffic" className='hover:underline mx-1 select-none cursor-pointer'>Traffic</Link>
                 <Link to="/gallery" className='hover:underline mx-1 select-none cursor-pointer'>Gallery</Link>
                 <Link to="/festival" className='hover:underline mx-1 select-none cursor-pointer'>Festival</Link>
                 <Link to="/charger" className='hover:underline mx-1 select-none cursor-pointer'>Charge</Link>
-                <Link to="/jotai" className='hover:underline mx-1 select-none cursor-pointer'>Jotai</Link>
-                <Link to="/festivalwithjotai" className='hover:underline mx-1 select-none cursor-pointer'>FestivalwithJotai</Link>
+                {/*<Link to="/jotai" className='hover:underline mx-1 select-none cursor-pointer'>Jotai</Link>
+                <Link to="/festivalwithjotai" className='hover:underline mx-1 select-none cursor-pointer'>FestivalwithJotai</Link>*/}
+                <Link to="/todolist" className='hover:underline mx-1 select-none cursor-pointer'>TodoList</Link>
             </ul>
         </nav>
     </header>

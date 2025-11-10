@@ -28,7 +28,7 @@ export default function FestivalContents() {
                         <div className="p-2 md:text-right">축제구분</div>
                         <div className="font-bold md:col-span-5  p-2">{item.GUGUN_NM}</div>
                         <div className="p-2 md:text-right">주소</div>
-                        <div className="font-bold md:col-span-5 p-2">{item.ADDR1}
+                        <div className="font-bold md:col-span-5 p-2 ">{item.ADDR1}
                             <a href={kakaoMapUrl} target="_blank"
                                 className="bg-amber-300 p-2 rounded-sm mx-4"
                             >카카오지도보기</a>
