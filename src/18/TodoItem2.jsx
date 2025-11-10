@@ -67,7 +67,7 @@ export default function TodoItem2({ id, text, completed }) {
                 :
                 <div className="w-full mt-4 flex flex-row items-center py-2 h-13 " >
                     <input type="checkbox" className="mx-2 w-5 h-5 cursor-pointer" checked={completed} onChange={handleCheck} />
-                    <div className="flex-1 p-2" name={id}>{text}</div>
+                    <div className={`flex-1 p-2 ${completed ? "line-through" : ""}`} name={id}>{text}</div>
                     <TailButton caption="수정" color="lime" onHandle={insertField} />
                     <TailButton caption="삭제" color="orange" onHandle={delTodo} />
                 </div>
