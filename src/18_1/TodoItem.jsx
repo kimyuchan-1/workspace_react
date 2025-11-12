@@ -1,17 +1,14 @@
-import { useAtom } from "jotai"
-import { todoAtom } from './atomsTodo'
 import TailButton from "../component/TailButton";
 import { useState } from "react";
 
-export default function TodoItem2({ id, text, completed }) {
-    const [todo, setTodo] = useAtom(todoAtom);
+export default function TodoItem({ id, text, completed, todos, setTodos }) {
     const [isEdit, setIsEdit] = useState(false);
     const [value, setValue] = useState(text);
 
 
     const delTodo = (e) => {
         e.preventDefault();
-        setTodo(todo.filter(item => item.id != id));
+        setTodos(todos.filter(item => item.id != id));
 
     };
 
@@ -34,8 +31,8 @@ export default function TodoItem2({ id, text, completed }) {
             return;
         }
 
-        const tm = todo.map(item => item.id == id ? { ...item, text: temp } : item);
-        setTodo(tm);
+        const tm = todos.map(item => item.id == id ? { ...item, text: temp } : item);
+        setTodos(tm);
         setIsEdit(false);
 
     };
@@ -45,13 +42,13 @@ export default function TodoItem2({ id, text, completed }) {
     };
 
     const handleCheck = () => {
-        setTodo(
-            prev => prev.map(item => item.id == id ? { ...item, completed: !item.completed } : item)
+        setTodos(
+            todos.map(item => item.id == id ? { ...item, completed: !item.completed } : item)
         );
     };
 
     return (
-        <div >
+        <div className="w-full">
             {isEdit ?
                 <div className="w-full mt-4 flex flex-row items-center py-2 h-13 ">
                     <input type="checkbox" className="mx-2 w-5 h-5 cursor-pointer" checked={completed} onChange={handleCheck} />

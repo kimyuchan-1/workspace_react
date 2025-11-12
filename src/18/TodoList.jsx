@@ -9,18 +9,20 @@ export default function TodoList() {
     let imcompleted = useAtomValue(imcompletedAtom);
 
     return (
-        <div className='align-baseline'>
-            <div className='w-full flex flex-col justify-center items-center p-4'>
+        <div >
+            <div className='w-full flex flex-col justify-center items-center py-4'>
                 <div className='text-3xl font-bold pb-4'>To do list</div>
                 <div className='w-full px-4 py-2 bg-amber-100 rounded-md'>
                     전체 : {todo.length}개 | 완료 : {completed}개 | 미완료 : {imcompleted}개
                 </div>
             </div>
+
             <TodoInput />
             {todo.map(item => <TodoItem2 key = {item.id} 
-                                        id = {item.id} 
-                                        text = {item.text} 
-                                        completed ={item.completed}/>)}
+                                         id = {item.id} 
+                                         text = {item.text} 
+                                         completed ={item.completed}/>)}
+
         </div>
     )
 }
