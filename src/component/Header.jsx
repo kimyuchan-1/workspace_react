@@ -17,8 +17,8 @@ export default function Header() {
                     <div className='font-bold text-2xl mx-1 flex flex-row items-center justify-center select-none'>
                         <FaReact />&nbsp;KGT React
                     </div>
-                    <div>
-                        <button onClick={toggleMenu} className='text-2xl'>
+                    <div className='flex items-center'>
+                        <button onClick={toggleMenu} className='text-3xl'>
                             <FaBars />
                         </button>
                     </div>
@@ -35,8 +35,8 @@ export default function Header() {
 
             {/* Sidebar Menu */}
             <div className={`fixed top-0 right-0 h-full w-64 bg-zinc-800 shadow-lg transform ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out z-50`}>
-                <div className='flex justify-end p-5'>
-                    <button onClick={toggleMenu} className='text-2xl text-gray-100'>
+                <div className='flex justify-end items-center p-5'>
+                    <button onClick={toggleMenu} className='text-4xl text-gray-100'>
                         <FaTimes />
                     </button>
                 </div>
