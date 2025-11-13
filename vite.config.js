@@ -19,6 +19,12 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: path => path.replace(/^\/festival-api/, '/6260000/FestivalService'),
         secure: false,
+      },
+      '/subway-api': {
+        target: 'https://apis.data.go.kr',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/subway-api/, '/6260000/IndoorAirQuality'),
+        secure: false
       }
     }
   }

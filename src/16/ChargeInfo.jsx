@@ -117,13 +117,13 @@ export default function ChargerInfo() {
         if (tdata.length == 0) return;
 
         const tempTags = [
-        <ChargerCard color="orange" title="충전소수" num={tdata.length} />,
-        <ChargerCard color="blue" title="통신이상" key="1" num={tdata.filter(item => item.stat == 1).length} />,
-        <ChargerCard color="blue" title="충전대기" key="2" num={tdata.filter(item => item.stat == 2).length} />,
-        <ChargerCard color="blue" title="충전중" key="3" num={tdata.filter(item => item.stat == 3).length} />,
-        <ChargerCard color="blue" title="운영중지" key="4" num={tdata.filter(item => item.stat == 4).length} />,
-        <ChargerCard color="blue" title="점검중" key="5" num={tdata.filter(item => item.stat == 5).length} />,
-        <ChargerCard color="blue" title="상태미확인" key="9" num={tdata.filter(item => item.stat == 9).length} />
+        <ChargerCard color="orange" title="충전소수" key="chargecard0" num={tdata.length} />,
+        <ChargerCard color="blue" title="통신이상" key="chargecard1" num={tdata.filter(item => item.stat == 1).length} />,
+        <ChargerCard color="blue" title="충전대기" key="chargecard2" num={tdata.filter(item => item.stat == 2).length} />,
+        <ChargerCard color="blue" title="충전중" key="chargecard3" num={tdata.filter(item => item.stat == 3).length} />,
+        <ChargerCard color="blue" title="운영중지" key="chargecard4" num={tdata.filter(item => item.stat == 4).length} />,
+        <ChargerCard color="blue" title="점검중" key="chargecard5" num={tdata.filter(item => item.stat == 5).length} />,
+        <ChargerCard color="blue" title="상태미확인" key="chargecard9" num={tdata.filter(item => item.stat == 9).length} />
         ];
         setCardTags(tempTags);
 
