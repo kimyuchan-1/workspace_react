@@ -5,14 +5,6 @@ import sarea from "./sarea.json"
 import { useState, useEffect, useRef, Suspense } from "react"
 
 export default function Subway() {
-    return(
-        <Suspense fallback={<div className='h-full w-full flex justify-center items-center'><img src="/img/loading.gif" alt="로딩중" /></div>}>
-            <SubwayContent />
-        </Suspense>
-    );
-}
-
-function SubwayContent() {
     const [boxTags, setBoxTags] = useState([]);
     const [sData, setSData] = useState([]);
     let today = new Date();
@@ -91,7 +83,9 @@ function SubwayContent() {
                         className='flex justify-center'/>
                 </p>
             </div>
-            {boxTags}
+            <Suspense fallback={<div className='h-full w-full flex justify-center items-center'><img src="/img/loading.gif" alt="로딩중" /></div>}>
+                {boxTags}
+            </Suspense>
         </div>
     )
 }

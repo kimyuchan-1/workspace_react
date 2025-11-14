@@ -25,7 +25,7 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: path => path.replace(/^\/subway-api/, '/6260000/IndoorAirQuality'),
         secure: false
-      }
+      },
     }
   }
 },
