@@ -8,24 +8,7 @@ export default defineConfig({
   ],
   server: {
     proxy: {
-      '/photo-api': {
-        target: 'https://apis.data.go.kr',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/photo-api/, '/B551011/PhotoGalleryService1'),
-        secure: false,
-      },
-      '/festival-api': {
-        target: 'https://apis.data.go.kr',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/festival-api/, '/6260000/FestivalService'),
-        secure: false,
-      },
-      '/subway-api': {
-        target: 'https://apis.data.go.kr',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/subway-api/, '/6260000/IndoorAirQuality'),
-        secure: false
-      },
+      
       '/kobisopenapi': {
         target: 'https://kobis.or.kr/kobisopenapi',
         changeOrigin: true,
