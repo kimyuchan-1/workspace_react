@@ -11,7 +11,7 @@ export default function Gallery() {
 
     const getFetchData = async (search) => {
         const apiKey = import.meta.env.VITE_APP_API_KEY; 
-        const baseUrl = '/photo-api/gallerySearchList1?';
+        const baseUrl = '/dataApi/B551011/PhotoGalleryService1/gallerySearchList1?';
         let url = `${baseUrl}serviceKey=${apiKey}&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&keyword=${search}&_type=json`;
 
         try {

@@ -4,7 +4,7 @@ export const selGuAtom = atom(null);
 
 export const festivalFetchAtom = atom(async () => {
     const apiKey = import.meta.env.VITE_APP_API_KEY;
-    const baseUrl = '/festival-api/getFestivalKr?';
+    const baseUrl = '/dataApi/6260000/FestivalService/getFestivalKr?';
     let url = `${baseUrl}serviceKey=${apiKey}`;
     url = `${url}&pageNo=1&numOfRows=45&resultType=JSON`;
 

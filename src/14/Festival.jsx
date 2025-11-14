@@ -11,7 +11,7 @@ export default function Festival() {
 
     const getFetchData = async () => {
         const apiKey = import.meta.env.VITE_APP_API_KEY; 
-        const baseUrl = '/festival-api/getFestivalKr?';
+        const baseUrl = '/dataApi/6260000/FestivalService/getFestivalKr?';
         let url = `${baseUrl}serviceKey=${apiKey}&pageNo=1&numOfRows=41&resultType=JSON`;
 
         try{

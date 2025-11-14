@@ -26,6 +26,18 @@ export default defineConfig({
         rewrite: path => path.replace(/^\/subway-api/, '/6260000/IndoorAirQuality'),
         secure: false
       },
+      '/kobisopenapi': {
+        target: 'https://kobis.or.kr/kobisopenapi',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/kobisopenapi/, ''), 
+        secure: false
+      },
+      '/dataApi' : {
+        target: 'https://apis.data.go.kr',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/dataApi/, ''),
+        secure: false
+      }
     }
   }
 },

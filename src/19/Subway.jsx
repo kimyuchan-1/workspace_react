@@ -12,7 +12,7 @@ export default function Subway() {
     const location = useRef();
 
     const getFetchData = async () => {
-        const baseUrl = '/subway-api/getIndoorAirQualityByStation';
+        const baseUrl = '/dataApi/6260000/IndoorAirQuality/getIndoorAirQualityByStation';
         const apiKey = import.meta.env.VITE_APP_API_KEY;
         let url = `${baseUrl}?serviceKey=${apiKey}`;
         url += `&pageNo=1&numOfRows=24&resultType=json&controlnumber=${selectDate}&areaIndex=${location.current.value}`;
