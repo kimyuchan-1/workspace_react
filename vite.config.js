@@ -8,7 +8,6 @@ export default defineConfig({
   ],
   server: {
     proxy: {
-      
       '/kobisopenapi': {
         target: 'https://kobis.or.kr/kobisopenapi',
         changeOrigin: true,
