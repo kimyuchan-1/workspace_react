@@ -49,8 +49,8 @@ export default function Header() {
                                     <LuLogOut /><p>&nbsp;Logout</p>
                                 </button>
                             </Link>
-                            <button onClick={toggleMenu} className='text-3xl px-5 hover:cursor-pointer'>
-                                <FaBars />
+                            <button onClick={toggleMenu} className='px-5'>
+                                <FaBars className='hover:cursor-pointer hover:bg-white rounded-md hover:text-black text-3xl hover:font-bold '/>
                             </button>
                         </div>
                         }
@@ -69,7 +69,7 @@ export default function Header() {
             {/* Sidebar Menu */}
             <div className={`fixed top-0 right-0 h-full w-64 bg-zinc-800 shadow-lg transform ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out z-50`}>
                 <div className='flex justify-end items-center p-5'>
-                    <button onClick={toggleMenu} className='text-4xl text-gray-100 hover:cursor-pointer'>
+                    <button onClick={toggleMenu} className='text-4xl text-gray-100 hover:cursor-pointer  hover:bg-white rounded-md hover:text-black'>
                         <FaTimes />
                     </button>
                 </div>
