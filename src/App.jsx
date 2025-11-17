@@ -17,9 +17,7 @@ import FestivalContentWithJotai from './14_2/FestivalContentWithJotai'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import TodoList from './18_3/TodoList'
 import Subway from './19/Subway'
-
-
-
+import Login from './Login'
 function App() { // 함수명은 파일명과 동일해야 하며, 대문자로 시작해야 함, 소문자는 html 태그로 인식함
   // jsx 컴포넌트의 함수는 반드시 return을 해야 함
   return (
@@ -43,6 +41,7 @@ function App() { // 함수명은 파일명과 동일해야 하며, 대문자로 
             <Route path='/festivalwithjotai/contents' element={<FestivalContentWithJotai />} />
             <Route path='/todolist' element={<TodoList />}/>
             <Route path='/subway' element={<Subway />} />
+            <Route path='/login' element={<Login />} />
           </Routes>
         </main>
         <Footer />

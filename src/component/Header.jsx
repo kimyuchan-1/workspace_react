@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom'
 import { FaReact, FaBars, FaTimes } from "react-icons/fa";
+import { LuLogIn, LuLogOut } from "react-icons/lu";
 import { useState } from 'react';
-
+import { useAtomValue } from 'jotai';
+import { isLoginAtom } from '../isLogin';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const isLogin = useAtomValue(isLoginAtom);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -18,9 +21,29 @@ export default function Header() {
                         <FaReact />&nbsp;KGT React
                     </div>
                     <div className='flex items-center'>
-                        <button onClick={toggleMenu} className='text-3xl'>
-                            <FaBars />
-                        </button>
+                        { !isLogin &&
+                        <Link to='/login' >
+                            <button className='text-sm flex flex-row justify-center items-center
+                                                hover:cursor-pointer hover:bg-yellow-400 bg-yellow-300
+                                                rounded-md p-1 m-2 text-black hover:font-bold'>
+                                <LuLogIn /><p>&nbsp;Login</p>
+                            </button>
+                        </Link>
+                        }
+                        { isLogin &&
+                        <div className='flex items-center justify-around'>
+                            <Link to='/login' >
+                                <button className='text-sm flex flex-row justify-center items-center
+                                                    hover:cursor-pointer hover:bg-yellow-400 bg-yellow-300
+                                                    rounded-md p-1 m-2 text-black hover:font-bold'>
+                                    <LuLogOut /><p>&nbsp;Logout</p>
+                                </button>
+                            </Link>
+                            <button onClick={toggleMenu} className='text-3xl px-5'>
+                                <FaBars />
+                            </button>
+                        </div>
+                        }
                     </div>
                 </nav>
             </header>
