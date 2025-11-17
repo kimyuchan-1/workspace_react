@@ -32,7 +32,7 @@ export default function Header() {
                                 </button>
                             </Link>
                             <Link to= '/'>
-                                <button className='text-2xl flex flex-row justify-center items-center
+                                <button className='text-3xl flex flex-row justify-center items-center
                                                     hover:cursor-pointer hover:bg-white hover:text-black
                                                     rounded-md p-1 m-2 text-white hover:font-bold'>
                                     <MdHome />
