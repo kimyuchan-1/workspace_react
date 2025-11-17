@@ -28,13 +28,17 @@ function Login() {
       setSession(session);
       // 세션이 있으면 user 정보를, 없으면 null을 user state에 저장
       setUser(session?.user || null);
-      // 세션이 있으면 isLogin 상태를 true로, 없으면 false로 설정
-      setIsLogin(session ? true : false);
+      
     });
 
     // 컴포넌트가 언마운트될 때 리스너를 정리
     return () => subscription.unsubscribe();
   }, []); // 빈 배열을 전달하여 컴포넌트가 마운트될 때 한 번만 실행되도록 함
+
+  useEffect(() => {
+    // 세션이 있으면 isLogin 상태를 true로, 없으면 false로 설정
+      setIsLogin(session ? true : false);
+  },[session])
 
   // GitHub OAuth를 사용하여 로그인하는 비동기 함수
   const signInWithGithub = async () => {
@@ -56,8 +60,7 @@ function Login() {
         <h1 className="text-2xl font-bold mb-4">로그인</h1>
         <button
           onClick={signInWithGithub} // 버튼 클릭 시 GitHub으로 로그인 함수 호출
-          className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700"
-        >
+          className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 hover:cursor-pointer">
           GitHub으로 로그인
         </button>
       </div>
@@ -74,7 +77,7 @@ function Login() {
         
         <button
           onClick={signOut} // 버튼 클릭 시 로그아웃 함수 호출
-          className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-500"
+          className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-500 hover:cursor-pointer"
         >
           로그아웃
         </button>

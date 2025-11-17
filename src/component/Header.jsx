@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { FaReact, FaBars, FaTimes } from "react-icons/fa";
 import { LuLogIn, LuLogOut } from "react-icons/lu";
+import { MdHome } from "react-icons/md";
 import { useState } from 'react';
 import { useAtomValue } from 'jotai';
 import { isLoginAtom } from '../isLogin';
@@ -20,26 +21,35 @@ export default function Header() {
                     <div className='font-bold text-2xl mx-1 flex flex-row items-center justify-center select-none'>
                         <FaReact />&nbsp;KGT React
                     </div>
-                    <div className='flex items-center'>
-                        { !isLogin &&
-                        <Link to='/login' >
-                            <button className='text-sm flex flex-row justify-center items-center
-                                                hover:cursor-pointer hover:bg-yellow-400 bg-yellow-300
-                                                rounded-md p-1 m-2 text-black hover:font-bold'>
-                                <LuLogIn /><p>&nbsp;Login</p>
-                            </button>
-                        </Link>
+                    <div >
+                        { !isLogin && 
+                        <div className='flex items-center'>
+                            <Link to='/login' >
+                                <button className='text-md flex flex-row justify-center items-center
+                                                    hover:cursor-pointer hover:bg-yellow-300 hover:text-black
+                                                    rounded-md p-1 m-2 text-white hover:font-bold'>
+                                    <LuLogIn /><p>&nbsp;Login</p>
+                                </button>
+                            </Link>
+                            <Link to= '/'>
+                                <button className='text-2xl flex flex-row justify-center items-center
+                                                    hover:cursor-pointer hover:bg-white hover:text-black
+                                                    rounded-md p-1 m-2 text-white hover:font-bold'>
+                                    <MdHome />
+                                </button>
+                            </Link>
+                        </div>
                         }
                         { isLogin &&
-                        <div className='flex items-center justify-around'>
+                        <div className='flex items-center'>
                             <Link to='/login' >
-                                <button className='text-sm flex flex-row justify-center items-center
-                                                    hover:cursor-pointer hover:bg-yellow-400 bg-yellow-300
-                                                    rounded-md p-1 m-2 text-black hover:font-bold'>
+                                <button className='text-md flex flex-row justify-center items-center
+                                                    hover:cursor-pointer hover:bg-yellow-300 hover:text-black
+                                                    rounded-md p-1 m-2 text-white hover:font-bold'>
                                     <LuLogOut /><p>&nbsp;Logout</p>
                                 </button>
                             </Link>
-                            <button onClick={toggleMenu} className='text-3xl px-5'>
+                            <button onClick={toggleMenu} className='text-3xl px-5 hover:cursor-pointer'>
                                 <FaBars />
                             </button>
                         </div>
@@ -59,7 +69,7 @@ export default function Header() {
             {/* Sidebar Menu */}
             <div className={`fixed top-0 right-0 h-full w-64 bg-zinc-800 shadow-lg transform ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out z-50`}>
                 <div className='flex justify-end items-center p-5'>
-                    <button onClick={toggleMenu} className='text-4xl text-gray-100'>
+                    <button onClick={toggleMenu} className='text-4xl text-gray-100 hover:cursor-pointer'>
                         <FaTimes />
                     </button>
                 </div>
